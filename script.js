@@ -95,7 +95,14 @@ function makeCardByTemplate(img, title, description, price, tags) {
   cardItem.querySelector('h1').textContent = title;
   cardItem.querySelector('p').textContent = description;
   cardItem.querySelector('span').textContent = `${price}Р`;
-  cardItem.querySelector('.tags').textContent = tags.join(' ');
+
+  for (let i = 0; i < tags.length; i++) {
+    const elemSpan = document.createElement('span');
+    elemSpan.classList.add('tag');
+    elemSpan.textContent = tags[i];
+    cardItem.querySelector('.tags').append(elemSpan);
+  };
+
   return cardsContainer.append(cardItem);
 };
 
@@ -112,7 +119,7 @@ function checkSearchString() {
   
   const searchResult = items.filter((item) => item.title.toLowerCase().trim().includes(searchString.toLowerCase().trim()));
 
-  if (searchResult == ![]) {
+  if (searchResult.length == 0) {
     nothingFound.textContent = "Ничего не найдено";
   } else {
     nothingFound.innerHTML = '';
