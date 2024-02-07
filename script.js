@@ -96,12 +96,12 @@ function makeCardByTemplate(img, title, description, price, tags) {
   cardItem.querySelector('p').textContent = description;
   cardItem.querySelector('span').textContent = `${price}Р`;
 
-  for (let i = 0; i < tags.length; i++) {
+  tags.forEach(function(item) {
     const elemSpan = document.createElement('span');
     elemSpan.classList.add('tag');
-    elemSpan.textContent = tags[i];
+    elemSpan.textContent = item;
     cardItem.querySelector('.tags').append(elemSpan);
-  };
+  });
 
   return cardsContainer.append(cardItem);
 };
